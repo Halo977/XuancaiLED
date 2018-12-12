@@ -1,0 +1,87 @@
+ int LED1=8;
+ int LED2=9;
+ int LED3=10;
+ int LED4=11;
+ int LED5=12;
+ int LED6=13;
+ int n;
+void setup()
+{ //设置各个引脚的初始状态 
+for(n=8;n<=13;n++)
+{
+  pinMode(n, OUTPUT);  
+}
+}
+void loop() 
+{
+  turn1();//顺序点亮，顺序熄灭
+  clean();  //灭掉所有灯
+  
+  turn2();//6灯齐闪
+  clean();//灭掉所有灯
+  
+  turn3();
+  clean();//灭掉所有灯
+} 
+void turn1()  //顺序点亮，顺序熄灭
+{
+  for(n=8;n<=13;n++)
+{
+    digitalWrite(n,HIGH);
+    delay(300);
+}
+  for(n=8;n<=13;n++)
+{
+    digitalWrite(n,LOW);
+    delay(300);
+}
+}
+void turn2()//6灯齐闪3次
+{ for(int x=0;x<=2;x++)
+{
+  for(n=8;n<=13;n++)
+{
+    digitalWrite(n,HIGH);   
+}
+delay(300); 
+  for(n=8;n<=13;n++)
+{
+    digitalWrite(n,LOW);
+    
+}
+delay(300);
+}
+}
+void turn3()//两个两个一起闪3次
+{
+  for(int x=0;x<=2;x++)
+  {
+  digitalWrite(8,HIGH);
+  digitalWrite(9,HIGH);
+  for(n=10;n<=13;n++){
+    digitalWrite(n,LOW);
+  }
+  delay(300);
+  digitalWrite(10,HIGH);
+  digitalWrite(11,HIGH);
+  digitalWrite(8,LOW);
+  digitalWrite(9,LOW);
+  digitalWrite(12,LOW);
+  digitalWrite(13,LOW);
+  delay(300);
+  digitalWrite(12,HIGH);
+  digitalWrite(13,HIGH);
+  for(n=8;n<=11;n++){
+    digitalWrite(n,LOW);
+  }
+  delay(300);
+}
+}
+void clean()
+{  for(n=8;n<=13;n++)
+{
+    digitalWrite(n,LOW);
+    
+}
+delay(300);
+}
